@@ -1,6 +1,6 @@
 # RCAN
 
-This repository is an updated and detailed version of repository [3D-RCAN]([https://github.com/eexuesong/SIMreconProject](https://github.com/AiviaCommunity/3D-RCAN)).
+This repository is an updated and detailed version of repository [3D-RCAN]([https://github.com/eexuesong/SIMreconProject](https://github.com/AiviaCommunity/3D-RCAN]).
 
 ## System Requirements
 
