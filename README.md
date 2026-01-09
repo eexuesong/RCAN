@@ -20,10 +20,10 @@ Tested Environment:
 1. Install [Anaconda](https://www.anaconda.com/download) and [Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows).
 
 2. Create a conda environment.
-    - In Pycharm, create a new project named e.g. "CARE" using [Conda environment](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html). A new environment with same name will also be created.
-    - Or in [Anaconda Prompt](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html), create a new environment named "CARE" by:
+    - In Pycharm, create a new project named e.g. "RCAN" using [Conda environment](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html). A new environment with same name will also be created.
+    - Or in [Anaconda Prompt](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html), create a new environment named "RCAN" by:
         ```posh
-        conda create --name CARE python=3.10
+        conda create --name RCAN python=3.10
         ```
         To see a list of all your environments, type:
         ```posh
@@ -33,15 +33,15 @@ Tested Environment:
         ```posh
         conda env list
         ```
-        Then in Pycharm, create a new project named e.g. "CARE" using Conda environment.
+        Then in Pycharm, create a new project named e.g. "RCAN" using Conda environment.
         Select the location of the Conda environment we just created as:
         ```posh
-        C:\Users\username\AppData\Local\anaconda3\envs\CARE
+        C:\Users\username\AppData\Local\anaconda3\envs\RCAN
         ```
 
 3. In Anaconda Prompt, activate the new environment:
     ```posh
-    conda activate CARE
+    conda activate RCAN
     ```
 
 ## Package Installation:
@@ -84,7 +84,7 @@ Tested Environment:
     conda install -c conda-forge scikit-image
     ```
 ## Run Files:
-8. Copy these files into the Pycharm project "CARE" folder and modify it accordingly.
+8. Copy these files into the Pycharm project "RCAN" folder and modify it accordingly.
 
 9. Copy "[ImageJ_formatted_TIFF.m](https://github.com/eexuesong/ImageJ_format_tiff/blob/main/ImageJ_formatted_TIFF.m)" and "[Simple_IFD.m](https://github.com/eexuesong/ImageJ_format_tiff/blob/main/Simple_IFD.m)" from [ImageJ_format_tiff](https://github.com/eexuesong/ImageJ_format_tiff.git) repository.
 
