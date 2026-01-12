@@ -20,10 +20,10 @@ Tested Environment:
 1. Install [Anaconda](https://www.anaconda.com/download) and [Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows).
 
 2. Create a conda environment.
-    - In Pycharm, create a new project named e.g. "RCAN" using [Conda environment](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html). A new environment with same name will also be created.
-    - Or in [Anaconda Prompt](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html), create a new environment named "RCAN" by:
+    - In Pycharm, create a new project named e.g. "RCAN3D" using [Conda environment](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html). A new environment with same name will also be created.
+    - Or in [Anaconda Prompt](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html), create a new environment named "RCAN3D" by:
         ```posh
-        conda create --name RCAN python=3.10
+        conda create --name RCAN3D python=3.10
         ```
         To see a list of all your environments, type:
         ```posh
@@ -33,19 +33,21 @@ Tested Environment:
         ```posh
         conda env list
         ```
-        Then in Pycharm, create a new project named e.g. "RCAN" using Conda environment.
+        Then in Pycharm, create a new project named e.g. "RCAN3D" using Conda environment.
         Select the location of the Conda environment we just created as:
         ```posh
-        C:\Users\username\AppData\Local\anaconda3\envs\RCAN
+        C:\Users\username\AppData\Local\anaconda3\envs\RCAN3D
         ```
 
 3. In Anaconda Prompt, activate the new environment:
     ```posh
-    conda activate RCAN
+    conda activate RCAN3D
     ```
 
+4. You should see (RCAN3D) in the command line.
+
 ## Package Installation:
-4. GPU setup
+5. GPU setup
     
     Note: Important, or you will run DL on CPU instead. Without a GPU, training and prediction will be much slower (~30-60 times, even when using a computer with 40 CPU cores):
     
@@ -58,31 +60,16 @@ Tested Environment:
         conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
         ```
 
-5. In Anaconda Promp, install [TensorFlow 2.10](https://pypi.org/project/tensorflow/2.10.0/):
+6. In Anaconda Promp, run:
     ```posh
-    pip install tensorflow_gpu==2.10
-    pip install numpy==1.26.4
+    pip install -r requirements.txt
     ```
 
-6. In Anaconda Promp, verify the GPU setup:
+7. In Anaconda Promp, verify the GPU setup:
     ```posh
     python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
     ```
     
-7. Finally, install the latest stable version of the [CSBDeep](https://pypi.org/project/csbdeep/) package with pip.
-    - If you installed TensorFlow 2 (version 2.x.x):
-    ```posh
-    pip install csbdeep
-    ```
-    - If you installed TensorFlow 1 (version 1.x.x):
-    ```posh
-    pip install "csbdeep[tf1]"
-    ```
-    - Besides csbdeep, numpy, tifffile, scipy and matplotlib will also be installed meanwhile.
-    - Also install [scikit-image](https://pypi.org/project/scikit-image/) for image transform:
-    ```posh
-    conda install -c conda-forge scikit-image
-    ```
 ## Run Files:
 8. Copy these files into the Pycharm project "RCAN" folder and modify it accordingly.
 
