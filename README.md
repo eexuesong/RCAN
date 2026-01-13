@@ -46,6 +46,12 @@ Tested Environment:
 
 4. You should see (RCAN3D) in the command line.
 
+5. Or if you want to delete the environment:
+   ```posh
+   conda deactivate
+   conda env remove --name RCAN3D
+    ```
+
 ## Package Installation
 5. GPU setup
     
