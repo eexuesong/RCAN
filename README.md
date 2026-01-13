@@ -62,9 +62,9 @@ Tested Environment:
 
 6. In Anaconda Promp, run:
     ```posh
-    cd /D
-    cd D:\Code\Python Code\RCAN
-    pip install -r requirements.txt
+    D:
+    cd D:\Code\Python Code\RCAN (Suppose this your project folder)
+    pip install -r requirements.txt ("requirements.txt" must be placed under the above folder)
     ```
 
 7. In Anaconda Promp, verify the GPU setup:
