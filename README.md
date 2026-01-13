@@ -80,7 +80,7 @@ To initiate training, use the command:
 python train.py -c config.json -o /path/to/training/output/dir
 ```
 
-Training data can be specified in the config.json file by either:
+Training data can be specified in the `config.json` file by either:
 ### (Option 1) Providing paths to folders containing raw/grountruth image pairs (`training_data_dir`).
 
 ```javascript
@@ -152,112 +152,68 @@ Numerous other options can be configured in the JSON file (if not set, default v
     "epochs": 100 ~ 300
     ```
   
-- `steps_per_epoch` (integer)
-  
-  - Number of steps to perform back-propagation on mini-batches in each epoch
-
+- `steps_per_epoch` (integer): Number of steps to perform back-propagation on mini-batches in each epoch
   - Default: 256, Range: >=1
-  
     ```javascript
-    "steps_per_epoch": 100
+    "steps_per_epoch": 100, 256 or 400
     ```
   
-- `num_channels` (integer)
-  
-  - Number of feature channels in RCAN
-
+- `num_channels` (integer): Number of feature channels in RCAN
   - Default: 32, Range: >=1
-  
     ```javascript
-    "num_channels": 16
+    "num_channels": 32
     ```
   
-- `num_residual_blocks` (integer)
-  
-  - Number of residual channel attention blocks in each residual group in RCAN
-
+- `num_residual_blocks` (integer): Number of residual channel attention blocks in each residual group in RCAN
   - Default: 3, Range: >=1
-  
     ```javascript
-    "num_channels": 4
+    "num_channels": 3, 4 or 5
     ```
   
-- `num_residual_groups` (integer)
-  
-  - Number of residual groups in RCAN
-
-  - Default: 5, Range: >= 1
-  
+- `num_residual_groups` (integer): Number of residual groups in RCAN
+  - Default: 5, Range: >=1
     ```javascript
-    "num_residual_groups": 4
+    "num_residual_groups": 5
     ```
   
-- `channel_reduction` (integer)
-  
-  - Channel reduction ratio for channel attention
-  
+- `channel_reduction` (integer): Channel reduction ratio for channel attention (no need to specify in `config.json`)
   - Default: 8, Range: >=1
-  
     ```javascript
     "channel_reduction": 4
     ```
 
-- `data_augmentation` (boolean)
-
-  - Enable/Disable data augmentation (rotation and flip)
-
+- `data_augmentation` (boolean): Enable/Disable data augmentation (rotation and flip) (no need to specify in `config.json`)
   - Default: True
-
     ```javascript
     "data_augmentation": False
     ```
 
-- `intensity_threshold` (number)
-
-  - Threshold used to reject patches with low average intensity 
-
+- `intensity_threshold` (number): Threshold used to reject patches with low average intensity (no need to specify in `config.json`)
   - Default: 0.25, Range: >0.0
-
     ```javascript
     "intensity_threshold": 0.3
     ```
 
-- `area_ratio_threshold` (number)
-
-  - Threshold used to reject patches with small areas of valid signal 
-
+- `area_ratio_threshold` (number): Threshold used to reject patches with small areas of valid signal (no need to specify in `config.json`)
   - Default: 0.5, Range: 0.0~1.0
-
     ```javascript
     "area_ratio_threshold": 0.3
     ```
 
-- `initial_learning_rate` (number)
-
-  - Initial learning rate
-
+- `initial_learning_rate` (number): Initial learning rate
   - Default: 1e-4, Range: >= 1e-6
-
     ```javascript
     "initial_learning_rate": 1e-5
     ```
 
-- `loss` (string)
-
-  - The objective function used for deep learning training
-
+- `loss` (string): The objective function used for deep learning training (no need to specify in `config.json`)
   - Defaut: "mae", Options:  (1) “mae”= mean absolute error or (2) “mse”= mean squared error
-
     ```javascript
     "loss": "mse"
     ```
 
-- `metrics` (array of strings)
-
-  - List of metrics to be evaluated during training
-
+- `metrics` (array of strings): List of metrics to be evaluated during training (no need to specify in `config.json`)
   - Default: "psnr", Options: (1) “psnr”= Peak signal-to-noise ratio  and (2) “ssim”= structural similarity index measure
-
     ```javascript
     "metrics": ["psnr", "ssim"]
     ```
