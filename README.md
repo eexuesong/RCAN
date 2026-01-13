@@ -81,7 +81,7 @@ python train.py -c config.json -o /path/to/training/output/dir
 ```
 
 Training data can be specified in the config.json file by either:
-### (Option 1) Providing paths to folders containing raw and ground truth images (training_data_dir).
+### (Option 1) Providing paths to folders containing raw/grountruth image pairs (`training_data_dir`).
 
 ```javascript
 "training_data_dir": {"raw":"/path/to/training/Raw/",
@@ -90,7 +90,7 @@ Training data can be specified in the config.json file by either:
 
 If use option 1, please make sure that Raw and GT directories contain the same number of TIFF files. TIFF files in raw and GT directories are sorted in alphabetical order by name when matching the raw/GT pairs. The file names of each raw/GT pair are output in the terminal window when loading data. Please check the output to make sure raw and GT are correctly matched.
 
-### (Option 2) Listing specific pairs of raw and ground truth image files (training_image_pairs).
+### (Option 2) Listing specific raw/grountruth image pairs (`training_image_pairs`).
 
 ```javascript
 "training_image_pairs": [
