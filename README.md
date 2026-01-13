@@ -16,7 +16,7 @@ Tested Environment:
 - NVIDIA RTX A5000 24 GB
 - CUDA 11.2 and cuDNN 8.1.0
 
-## Environment Configuration:
+## Environment Configuration
 1. Install [Anaconda](https://www.anaconda.com/download) and [Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows).
 
 2. Create a conda environment.
@@ -46,7 +46,7 @@ Tested Environment:
 
 4. You should see (RCAN3D) in the command line.
 
-## Package Installation:
+## Package Installation
 5. GPU setup
     
     Note: Important, or you will run DL on CPU instead. Without a GPU, training and prediction will be much slower (~30-60 times, even when using a computer with 40 CPU cores):
@@ -72,7 +72,7 @@ Tested Environment:
     python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
     ```
     
-## Training:
+## Training
 Training a 3D-RCAN model requires a [`config.json`](config.json) file to specify parameters and data locations.
 
 To initiate training, use the command:
@@ -224,6 +224,43 @@ The loss values are saved in the training output folder. You can use TensorBoard
 tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
 ```
 
+
+
+## Applying the Model
+Trained 3D-RCAN models can be applied using the `apply.py` script. The script will automatically select the model with the lowest validation loss from the specified model directory.
+
+There are two primary ways to apply a model:
+
+### (Option 1) To a single image
+To apply the trained model to an image, run:
+
+```posh
+python apply.py -m /path/to/training/output/dir -i input_raw_image.tif -o output.tif
+```
+
+### (Option 2) To a folder of images (batch mode)
+You can turn on the “batch apply” mode by passing a foldery path to the “-i” argument, e.g.:
+
+```posh
+python apply.py -m /path/to/training/output/dir -i /path/to/input/image/dir -o /path/to/output/image/dir
+```
+
+When the input (specified by “-i”) is a folder, the output (“-o”) must be a folder too. The output folder is created by the script if it doesn’t exist yet.
+
+### All options
+- `-m` or `--model_dir` (string) [required]: Path of the folder that contains the deep learning model to be applied.
+- `-i` or `--input` (string) [required]: Path of the input raw image or folder.
+- `-o` or `--output` (string) [required]: Path of the output image or folder.
+- `-g` or `--ground_truth` (string) [optional]: Path of the reference ground truth image or folder.
+- `-b` or `--bpp` (int) [optional]: Bit depth of the output image (e.g., 8, 16, 32).
+- `-B` or `--block_shape`(tuple_of_ints) [optional]: Dimensions (Z,Y,X) of the block used to divide an input image into small blocks that could fit the GPU memory.
+- `-O` or `--block_overlap_shape`(tuple_of_ints) [optional]: The overlap sizes (Z,Y,X) between neighboring blocks.
+-  `--normalize_output_range_between_zero_and_one` [optional]: Normalizes output intensity to the [0, 1] range, or to the full bit depth range (e.g., [0, 65535] for 16-bit) when combined with `-b`.
+- `--rescale` [optional]: Performs affine rescaling to minimize MSE between restored and ground truth images, useful for comparisons similar to CARE methodology.
+- `-f` or `--output_tiff_format`(str) [optional]: Sets the output TIFF format (e.g., “imagej” or “ome”).
+
+
+
 ## Notes:
 (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
  
@@ -231,7 +268,7 @@ tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-Or you can select which GPU to train / apply the model:
+Alternatively, you can choose which GPU to use for training/applying the model:
 
     os.environ["CUDA_VISIBLE_DEVICES"] = "1"
     
