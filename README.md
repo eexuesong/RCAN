@@ -226,6 +226,7 @@ tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
 
 ## Notes:
 (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
+ 
     import os
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
