@@ -76,9 +76,9 @@ Tested Environment:
 Training a 3D-RCAN model requires a [`config.json`](config.json) file to specify parameters and data locations.
 
 To initiate training, use the command:
-        ```posh
-        conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
-        ```
+```posh
+python train.py -c config.json -o /path/to/training/output/dir
+```
 
 Training data can be specified in the config.json file by either:
 ### (Option 1) Providing paths to folders containing raw and ground truth images (training_data_dir).
