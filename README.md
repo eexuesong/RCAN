@@ -60,11 +60,11 @@ Tested Environment:
         conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
         ```
 
-6. In Anaconda Promp, run:
+6. Assuming your project is located in: D:\Code\Python Code\RCAN3D, the "requirements.txt" must be placed in the same folder. In Anaconda Promp, run:
     ```posh
     D:
-    cd D:\Code\Python Code\RCAN (Suppose this your project folder)
-    pip install -r requirements.txt ("requirements.txt" must be placed under the above folder)
+    cd D:\Code\Python Code\RCAN3D
+    pip install -r requirements.txt
     ```
 
 7. In Anaconda Promp, verify the GPU setup:
