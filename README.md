@@ -230,6 +230,10 @@ tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
     import os
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+Or you can select which GPU to train / apply the model:
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
     
 (2) You can find out which version of TensorFlow is installed via:
 
