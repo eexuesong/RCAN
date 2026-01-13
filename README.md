@@ -288,7 +288,7 @@ When the input (specified by “-i”) is a folder, the output (“-o”) must b
 3. Applying Command: 
    to apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
    ```posh
-   python apply.py -m "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\output" -i "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\raw" -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\Denoised" -b 16
+   python apply.py -m "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\model" -i "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\raw" -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\Denoised" -b 16
     ```
 
 
