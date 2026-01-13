@@ -72,7 +72,21 @@ Tested Environment:
     python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
     ```
     
-## Run Files:
+## Training:
+Training a 3D-RCAN model requires a "config.json"(config.json) file to specify parameters and data locations.
+
+To initiate training, use the command:
+    ```posh
+    python train.py -c config.json -o /path/to/training/output/dir
+    ```
+    
+Training data can be specified in the config.json file by either:
+
+Providing paths to folders containing raw and ground truth images (training_data_dir).
+Listing specific pairs of raw and ground truth image files (training_image_pairs).
+Numerous other options can be configured in the JSON file, including validation data, model architecture parameters (like num_residual_blocks, num_residual_groups), data augmentation settings, learning rate, loss functions, and metrics. The defaults for num_residual_blocks (3) and num_residual_groups (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
+
+The expected runtime is approximately 5-10 minutes per epoch on a system similar to the tested environment (NVIDIA GeForce GTX 1080 Ti - 11GB) using the example config.json. Training progress and loss values can be monitored using TensorBoard.
 8. Copy these files into the Pycharm project "RCAN" folder and modify it accordingly.
 
 9. Run code
