@@ -86,21 +86,72 @@ Providing paths to folders containing raw and ground truth images (training_data
 Listing specific pairs of raw and ground truth image files (training_image_pairs).
 Numerous other options can be configured in the JSON file, including validation data, model architecture parameters (like num_residual_blocks, num_residual_groups), data augmentation settings, learning rate, loss functions, and metrics. The defaults for num_residual_blocks (3) and num_residual_groups (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
 
-The expected runtime is approximately 5-10 minutes per epoch on a system similar to the tested environment (NVIDIA GeForce GTX 1080 Ti - 11GB) using the example config.json. Training progress and loss values can be monitored using TensorBoard.
+The user must specify the training data location in the input config JSON file to load the training images. We provide two ways to do so:
 
+### (Option 1) Load images from a folder using `training_data_dir`
 
-8. Copy these files into the Pycharm project "RCAN" folder and modify it accordingly.
+```javascript
+"training_data_dir": {"raw":"/path/to/training/Raw/",
+                      "gt":"/path/to/training/GT/"}
+```
 
-9. Run code
-     - In Anaconda Prompt, run the Python file, e.g.:
-     ```posh
+If use option 1, please make sure that Raw and GT directories contain the same number of TIFF files. TIFF files in raw and GT directories are sorted in alphabetical order by name when matching the raw/GT pairs. The file names of each raw/GT pair are output in the terminal window when loading data. Please check the output to make sure raw and GT are correctly matched.
 
-     Python datagen_isotropic.py
-     ```
+### (Option 2) Load specific raw/grountruth image pairs using `training_image_pairs`
 
-11. Use ctrl-C in the Terminal to terminate the process.
+```javascript
+"training_image_pairs": [
+      {"raw": "/path/to/training/Raw/image1.tif",
+        "gt": "/path/to/training/GT/image1.tif"},
+      {"raw": "/path/to/training/Raw/image2.tif",
+        "gt": "/path/to/training/GT/image2.tif"}
+]
+```
 
-12. Code run sequence: [datagen_isotropic.py](https://github.com/eexuesong/CARE/blob/main/datagen_isotropic.py) --> [training_3D.py](https://github.com/eexuesong/CARE/blob/main/training_3D.py) --> [prediction_isotropic_6degree.py](https://github.com/eexuesong/CARE/blob/main/prediction_isotropic_6degree.py)
+If use option 2, training data is an array of raw and GT image pairs.
+
+Note that you can also use `training_data_dir` and `training_image_pairs` at the same time.
+
+```javascript
+"training_data_dir": {"raw":"/path/to/training/Raw/",
+                      "gt":"/path/to/training/GT/"},
+"training_image_pairs": [
+     {"raw": "/path/to/additional/Raw/image1.tif",
+      "gt": "/path/to/additional/GT/image1.tif"},
+     {"raw": "/path/to/additional/Raw/image2.tif",
+      "gt": "/path/to/additional/GT/image2.tif"}
+]
+```
+
+### More options
+
+Following optional variables can be also set in the JSON file (if not set, default values will be used):
+
+- `validation_data_dir`
+  
+  - Paths to raw and groud truth data directories for validation
+    
+  - Default: None
+  
+    ```javascript
+    "validation_data_dir": {"raw":"/path/to/validation/Raw/",
+                            "gt":"/path/to/validation/GT/"}
+    ```
+  
+- `validation_image_pairs` (array of image pairs)
+  
+  - Validation data on which to evaluate the loss and metrics at the end of each epoch
+
+  - Default: None
+  
+    ```javascript
+    "validation_image_pairs": [
+         {"raw": "/path/to/additional/Raw_validation/image1.tif",
+          "gt": "/path/to/additional/GT_validation/image1.tif"},
+         {"raw": "/path/to/additional/Raw_validation/image2.tif",
+          "gt": "/path/to/additional/GT_validation/image2.tif"}
+        ]
+    ```
 
 ## Notes:
  (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
