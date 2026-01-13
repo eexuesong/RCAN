@@ -119,9 +119,7 @@ Note that you can also use `training_data_dir` and `training_image_pairs` at the
 ### More options
 Numerous other options can be configured in the JSON file (if not set, default values will be used), including validation data, model architecture parameters (like `num_residual_blocks`, `num_residual_groups`), data augmentation settings, learning rate, loss functions, and metrics. The defaults for `num_residual_blocks` (3) and `num_residual_groups` (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
 
-- `validation_data_dir`
-  
-  - Paths to raw and groud truth data directories for validation
+- `validation_data_dir`: Paths to raw and groud truth data directories for validation (optional)
     
   - Default: None
   
@@ -130,9 +128,7 @@ Numerous other options can be configured in the JSON file (if not set, default v
                             "gt":"/path/to/validation/GT/"}
     ```
   
-- `validation_image_pairs` (array of image pairs)
-  
-  - Validation data on which to evaluate the loss and metrics at the end of each epoch
+- `validation_image_pairs`: Validation data on which to evaluate the loss and metrics at the end of each epoch (array of image pairs) (optional)
 
   - Default: None
   
@@ -230,10 +226,11 @@ tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
 
 ## Notes:
  (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
- 
+    ```posh
     import os
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    ```
 
  (2) You can find out which version of TensorFlow is installed via:
 
