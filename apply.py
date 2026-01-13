@@ -89,9 +89,6 @@ def main():
     parser.add_argument("-m", "--model_dir", type=str, required=True)
     parser.add_argument("-i", "--input", type=str, required=True)
     parser.add_argument("-o", "--output", type=str, required=True)
-    parser.add_argument(
-        "-f", "--output_tiff_format", type=str,
-        choices=["imagej", "ome"], default="imagej")
     parser.add_argument("-g", "--ground_truth", type=str)
     parser.add_argument("-b", "--bpp", type=int, choices=[8, 16, 32], default=32)
     parser.add_argument("-B", "--block_shape", type=tuple_of_ints)
@@ -100,6 +97,7 @@ def main():
     parser.add_argument("--p_max", type=percentile, default=99.9)
     parser.add_argument("--rescale", action="store_true")
     parser.add_argument("--normalize_output_range_between_zero_and_one", action="store_true")
+    parser.add_argument("-f", "--output_tiff_format", type=str, choices=["imagej", "ome"], default="imagej")
     args = parser.parse_args()
 
     if args.rescale and args.normalize_output_range_between_zero_and_one:
