@@ -1,0 +1,16 @@
+# --- Core runtime ---
+tensorflow_gpu==2.10.1
+protobuf==3.19.6
+
+# TF2.10-compatible numeric stack (avoid numpy>=1.27)
+numpy==1.26.4
+h5py==3.7.0
+
+# --- What 3D-RCAN already depends on (from original requirements) ---
+jsonschema
+numexpr
+tifffile
+tqdm>=4.41.0
+
+# Windows console coloring
+colorama; sys_platform=='win32'

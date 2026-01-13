@@ -1,0 +1,13 @@
+{
+  "training_data_dir": {
+      "raw": "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\Raw",
+      "gt": "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\GT"
+  },
+  "epochs": 100,
+  "steps_per_epoch": 256,
+  "num_channels": 32,
+  "num_residual_blocks": 5,
+  "num_residual_groups": 5,
+  "input_shape": [8, 128, 128],
+  "initial_learning_rate": 1e-4
+}
