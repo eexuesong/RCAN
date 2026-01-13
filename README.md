@@ -279,15 +279,20 @@ When the input (specified by “-i”) is a folder, the output (“-o”) must b
     }
     ```
 
-2. Training Command:
-   To apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
+2. Training Command: 
+   to train the model with given image pairs, provide the json file (`-c`), and path for the output model (`-o`).
     ```posh
     python train.py -c config_denoise.json -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\model"
     ```
 
-3. Applying Command
-   To apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
+3. Applying Command: 
+   to apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
+   ```posh
+   python apply.py -m "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\output" -i "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\raw" -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Test\\Denoised" -b 16
+    ```
 
+
+    
 ## Notes:
 (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
  
