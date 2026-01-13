@@ -81,14 +81,7 @@ To initiate training, use the command:
     ```
     
 Training data can be specified in the config.json file by either:
-
-Providing paths to folders containing raw and ground truth images (training_data_dir).
-Listing specific pairs of raw and ground truth image files (training_image_pairs).
-Numerous other options can be configured in the JSON file, including validation data, model architecture parameters (like num_residual_blocks, num_residual_groups), data augmentation settings, learning rate, loss functions, and metrics. The defaults for num_residual_blocks (3) and num_residual_groups (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
-
-The user must specify the training data location in the input config JSON file to load the training images. We provide two ways to do so:
-
-### (Option 1) Load images from a folder using `training_data_dir`
+### (Option 1) Providing paths to folders containing raw and ground truth images (training_data_dir).
 
 ```javascript
 "training_data_dir": {"raw":"/path/to/training/Raw/",
@@ -97,7 +90,7 @@ The user must specify the training data location in the input config JSON file t
 
 If use option 1, please make sure that Raw and GT directories contain the same number of TIFF files. TIFF files in raw and GT directories are sorted in alphabetical order by name when matching the raw/GT pairs. The file names of each raw/GT pair are output in the terminal window when loading data. Please check the output to make sure raw and GT are correctly matched.
 
-### (Option 2) Load specific raw/grountruth image pairs using `training_image_pairs`
+### (Option 2) Listing specific pairs of raw and ground truth image files (training_image_pairs).
 
 ```javascript
 "training_image_pairs": [
@@ -152,6 +145,138 @@ Following optional variables can be also set in the JSON file (if not set, defau
           "gt": "/path/to/additional/GT_validation/image2.tif"}
         ]
     ```
+
+Numerous other options can be configured in the JSON file, including validation data, model architecture parameters (like num_residual_blocks, num_residual_groups), data augmentation settings, learning rate, loss functions, and metrics. The defaults for num_residual_blocks (3) and num_residual_groups (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
+
+- `epochs` (integer)
+  
+  - Number of epochs to train the model
+
+  - Default: 300,  Range: >=1
+  
+    ```javascript
+    "epochs": 200
+    ```
+  
+- `steps_per_epoch` (integer)
+  
+  - Number of steps to perform back-propagation on mini-batches in each epoch
+
+  - Default: 256, Range: >=1
+  
+    ```javascript
+    "steps_per_epoch": 100
+    ```
+  
+- `num_channels` (integer)
+  
+  - Number of feature channels in RCAN
+
+  - Default: 32, Range: >=1
+  
+    ```javascript
+    "num_channels": 16
+    ```
+  
+- `num_residual_blocks` (integer)
+  
+  - Number of residual channel attention blocks in each residual group in RCAN
+
+  - Default: 3, Range: >=1
+  
+    ```javascript
+    "num_channels": 4
+    ```
+  
+- `num_residual_groups` (integer)
+  
+  - Number of residual groups in RCAN
+
+  - Default: 5, Range: >= 1
+  
+    ```javascript
+    "num_residual_groups": 4
+    ```
+  
+- `channel_reduction` (integer)
+  
+  - Channel reduction ratio for channel attention
+  
+  - Default: 8, Range: >=1
+  
+    ```javascript
+    "channel_reduction": 4
+    ```
+
+- `data_augmentation` (boolean)
+
+  - Enable/Disable data augmentation (rotation and flip)
+
+  - Default: True
+
+    ```javascript
+    "data_augmentation": False
+    ```
+
+- `intensity_threshold` (number)
+
+  - Threshold used to reject patches with low average intensity 
+
+  - Default: 0.25, Range: >0.0
+
+    ```javascript
+    "intensity_threshold": 0.3
+    ```
+
+- `area_ratio_threshold` (number)
+
+  - Threshold used to reject patches with small areas of valid signal 
+
+  - Default: 0.5, Range: 0.0~1.0
+
+    ```javascript
+    "area_ratio_threshold": 0.3
+    ```
+
+- `initial_learning_rate` (number)
+
+  - Initial learning rate
+
+  - Default: 1e-4, Range: >= 1e-6
+
+    ```javascript
+    "initial_learning_rate": 1e-5
+    ```
+
+- `loss` (string)
+
+  - The objective function used for deep learning training
+
+  - Defaut: "mae", Options:  (1) “mae”= mean absolute error or (2) “mse”= mean squared error
+
+    ```javascript
+    "loss": "mse"
+    ```
+
+- `metrics` (array of strings)
+
+  - List of metrics to be evaluated during training
+
+  - Default: "psnr", Options: (1) “psnr”= Peak signal-to-noise ratio  and (2) “ssim”= structural similarity index measure
+
+    ```javascript
+    "metrics": ["psnr", "ssim"]
+    ```
+
+The default RCAN architecture is configured to be trained on a machine with 11GB GPU memory. If you encounter an OOM error during training, please try reducing model parameters such as `num_residual_blocks` or `num_residual_groups`. In the example [`config.json`](config.json), we reduce `num_residual_groups` to 3 to run on a 6GB GTX 1060 GPU.
+
+The expected runtime is 5-10 min/epoch using the example [`config.json`](config.json) under a PC similar to our tested environment.
+
+The loss values are saved in the training output folder. You can use TensorBoard to monitor the loss values. To use TensorBoard, run the following command and open [http://127.0.0.1:6006] in your browser.
+
+```posh
+tensorboard --host=127.0.0.1 --logdir=/path/to/training/dir
+```
 
 ## Notes:
  (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
