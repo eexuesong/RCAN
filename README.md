@@ -4,14 +4,14 @@ This repository is an updated and detailed version of repository [3D-RCAN](https
 
 ## System Requirements
 
-- Windows 10. Linux and Mac OS should be able to run the code but the code has been only tested on Windows 10 so far.
+- Windows 10. Linux and Mac OS should be able to run the code but the code has been only tested on Windows 10 & 11 so far.
 - Python 3.7+
 - NVIDIA GPU
-- CUDA 11.2 and cuDNN 8.1.0
+- CUDA 10.0 and cuDNN 7.6.5
 
 Tested Environment:
 
-- Windows 10
+- Windows 11
 - Python 3.10
 - NVIDIA RTX A5000 24 GB
 - CUDA 11.2 and cuDNN 8.1.0
@@ -62,6 +62,8 @@ Tested Environment:
 
 6. In Anaconda Promp, run:
     ```posh
+    cd /D
+    cd D:\Code\Python Code\RCAN
     pip install -r requirements.txt
     ```
 
@@ -73,13 +75,10 @@ Tested Environment:
 ## Run Files:
 8. Copy these files into the Pycharm project "RCAN" folder and modify it accordingly.
 
-9. Copy "[ImageJ_formatted_TIFF.m](https://github.com/eexuesong/ImageJ_format_tiff/blob/main/ImageJ_formatted_TIFF.m)" and "[Simple_IFD.m](https://github.com/eexuesong/ImageJ_format_tiff/blob/main/Simple_IFD.m)" from [ImageJ_format_tiff](https://github.com/eexuesong/ImageJ_format_tiff.git) repository.
-
-10. Run code
-     - In Pycharm, run the current file by Shift + F10
+9. Run code
      - In Anaconda Prompt, run the Python file, e.g.:
      ```posh
-     cd /D D:\Code\Python Code\CARE
+
      Python datagen_isotropic.py
      ```
 
