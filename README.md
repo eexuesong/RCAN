@@ -117,7 +117,7 @@ Note that you can also use `training_data_dir` and `training_image_pairs` at the
 ```
 
 ### More options
-Numerous other options can be configured in the JSON file (if not set, default values will be used), including validation data, model architecture parameters (like num_residual_blocks, num_residual_groups), data augmentation settings, learning rate, loss functions, and metrics. The defaults for num_residual_blocks (3) and num_residual_groups (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
+Numerous other options can be configured in the JSON file (if not set, default values will be used), including validation data, model architecture parameters (like `num_residual_blocks`, `num_residual_groups`), data augmentation settings, learning rate, loss functions, and metrics. The defaults for `num_residual_blocks` (3) and `num_residual_groups` (5) are set to balance performance and hardware constraints, aiming for optimal accuracy on standard GPUs (16-24GB VRAM) without causing memory overflow.
 
 - `validation_data_dir`
   
@@ -146,15 +146,10 @@ Numerous other options can be configured in the JSON file (if not set, default v
     ```
 
 
-
-- `epochs` (integer)
-  
-  - Number of epochs to train the model
-
-  - Default: 300,  Range: >=1
-  
+- `epochs` (integer): Number of epochs to train the model
+  - Default: 300,  Range: >=1  
     ```javascript
-    "epochs": 200
+    "epochs": 100 ~ 300
     ```
   
 - `steps_per_epoch` (integer)
