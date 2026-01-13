@@ -261,6 +261,33 @@ When the input (specified by “-i”) is a folder, the output (“-o”) must b
 
 
 
+## Denoising Model
+1. Configure the settings file (`config_denoise.json`) to define the data locations for the training/validation sets and the initial network hyperparameters. An example configuration file is shown below.
+   ```javascript
+    {
+      "training_data_dir": {
+          "raw": "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\Raw",
+          "gt": "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\GT"
+      },
+      "epochs": 300,
+      "steps_per_epoch": 256,
+      "num_channels": 32,
+      "num_residual_blocks": 5,
+      "num_residual_groups": 5,
+      "input_shape": [8, 256, 256],
+      "initial_learning_rate": 1e-4
+    }
+    ```
+
+2. Training Command:
+   To apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
+    ```posh
+    python train.py -c config_denoise.json -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\model"
+    ```
+
+3. Applying Command
+   To apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output denoised images (`-o`).
+
 ## Notes:
 (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
  
