@@ -286,7 +286,7 @@ When the input (specified by “-i”) is a folder, the output (“-o”) must b
     ```
 
 2. Training Command: 
-   to train the model with given image pairs, provide the json file (`-c`), and path for the output model (`-o`).
+   to train the model with given image pairs, provide the JSON file (`-c`), and path for the output model (`-o`).
     ```posh
     python train.py -c config_denoise.json -o "D:\\RCAN_dataset\\Denoising\\Tomm20_Mitochondria\\Training\\model"
     ```
