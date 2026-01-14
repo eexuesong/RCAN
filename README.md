@@ -298,7 +298,40 @@ When the input (specified by “-i”) is a folder, the output (“-o”) must b
     ```
 
 
-    
+
+## Resolution Enhancement Model
+1. Configure the settings file (`config_sr.json`) to define the data locations for the training/validation sets and the initial network hyperparameters. An example configuration file is shown below.
+   ```javascript
+    {
+      "training_data_dir": {
+          "raw": "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\Training\\raw",
+          "gt": "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\Training\\gt"
+      },
+      "epochs": 300,
+      "steps_per_epoch": 256,
+      "num_channels": 32,
+      "num_residual_blocks": 5,
+      "num_residual_groups": 5,
+      "input_shape": [8, 256, 256],
+      "initial_learning_rate": 1e-4
+    }
+    ```
+
+2. Training Command: 
+   to train the model with given image pairs, provide the JSON file (`-c`), and path for the output model (`-o`).
+    ```posh
+    python train.py -c config_sr.json -o "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\Training\\model"
+    ```
+
+3. Applying Command: 
+   to apply the model trainined in the previous section, provide the model (`-m`), path for the input images (`-i`), and path for the output resolution-enhanced images (`-o`).
+   ```posh
+   python apply.py -m "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\Training\\model" -i "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\test" -o "D:\\RCAN_dataset\\Confocal_2_STED\\Microtubule\\output" -b 16
+    ```
+
+
+
+
 ## Notes:
 (1) Do the following before initializing TensorFlow to limit TensorFlow to first GPU:
  
