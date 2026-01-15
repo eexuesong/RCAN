@@ -169,7 +169,7 @@ Numerous other options can be configured in the JSON file (if not set, default v
 - `num_residual_blocks` (integer): Number of residual channel attention blocks in each residual group in RCAN
   - Default: 3, Range: >=1
     ```javascript
-    "num_channels": 3, 4 or 5
+    "num_residual_blocks": 3, 4 or 5
     ```
   
 - `num_residual_groups` (integer): Number of residual groups in RCAN
